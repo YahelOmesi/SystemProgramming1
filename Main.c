@@ -76,6 +76,7 @@ int main() {
             case 3:
                 //printf("List contents:\n");
                 StrList_print(myList);
+                printf("\n");
                 break;
 
             case 4:
