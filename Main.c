@@ -41,6 +41,7 @@ int main() {
                 //printf("Enter the number of words to insert: ");
                 //int numWords = 0;
                 scanf("%d", &numWords);
+                
                 int numOfChar = StrList_printLen(myList);
                 word = (char*)malloc(sizeof(char)*numOfChar);
                  if(word == NULL){
@@ -76,7 +77,6 @@ int main() {
             case 3:
                 //printf("List contents:\n");
                 StrList_print(myList);
-                printf("\n");
                 break;
 
             case 4:
