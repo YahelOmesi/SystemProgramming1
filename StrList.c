@@ -62,7 +62,7 @@ void StrList_free(StrList* StrList){
     Node* current = StrList->head;
     while(current != NULL){
         Node* next = current->next;
-        freeNode(current);
+        freeNode(current); //both its data and the node itself 
         current = next;
     }
     free(StrList); //Free memory for the StrList structure itself
@@ -84,7 +84,7 @@ void StrList_insertLast(StrList* StrList, const char* data){
         Node* lastNode = getLastNode(StrList);
         lastNode->next = newNode;
     }
-    StrList->size++;
+    StrList->size++; // updating the new size
 }
 
 void StrList_insertAt(StrList* StrList, const char* data,int index){
@@ -107,7 +107,7 @@ void StrList_insertAt(StrList* StrList, const char* data,int index){
         newNode->next = current->next;
         current->next = newNode;
     }
-    StrList->size++;
+    StrList->size++; // updating the new size
 }
 
 char* StrList_firstData(const StrList* StrList){
@@ -117,13 +117,26 @@ char* StrList_firstData(const StrList* StrList){
     return NULL;
 }
 
-void StrList_print(const StrList* StrList){
-Node* current = StrList->head;
-while(current != NULL){
-    printf("%s ", current->data);
-    current = current->next;
-}
-printf("\n");
+
+// void StrList_print(const StrList* StrList){
+// Node* current = StrList->head;
+// while(current != NULL){
+//     printf("%s ", current->data);
+//     current = current->next;
+// }
+// printf("\n");
+// }
+
+void StrList_print(const StrList* StrList) {
+    Node* current = StrList->head;
+    while (current != NULL) {
+        printf("%s", current->data);
+        if (current->next != NULL) {
+            printf(" "); // Print space only if there is a next node
+        }
+        current = current->next;
+    }
+    printf("\n");
 }
 
 void StrList_printAt(const StrList* StrList, int index){
@@ -155,7 +168,7 @@ int StrList_count(StrList* StrList, const char* data){
     int count = 0;
     Node* current = StrList->head;
     while(current != NULL){
-        if(strcmp(current->data, data) == 0){ //according to lexicographical order
+        if(strcmp(current->data, data) == 0){ //the string exists in the list
             count++;
         }
         current = current->next;
@@ -213,6 +226,7 @@ int StrList_isEqual(const StrList* StrList1, const StrList* StrList2){
     }
     Node* current1 = StrList1->head;
     Node* current2 = StrList2->head;
+    
     while(current1 != NULL){
         if(strcmp(current1->data,current2->data) != 0){
             return 0;
@@ -308,6 +322,3 @@ int StrList_isSorted(StrList* StrList){
     }
     return 1; //Is sorted
 }
-
-
-
